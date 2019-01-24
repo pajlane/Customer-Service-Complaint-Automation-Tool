@@ -97,6 +97,9 @@ namespace CustomerServiceComplaintAutomationTool
             var addNewCustomer = driver.FindElement(By.CssSelector("div.content-header:nth-child(2) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > button:nth-child(1)")); //SUCCESS!!!!
             addNewCustomer.Click();
 
+            //new complaint policy is to have everyone send replacements from their Sale and Marketing accounts on Magento
+            //adjustments will require magento to search from the individual's account, then add the customer's desired shipping address.
+
             //start inputting customer's information
 
             var assostoWebdd = driver.FindElement(By.XPath("//*[@id='_accountwebsite_id']"));
