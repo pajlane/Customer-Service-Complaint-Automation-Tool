@@ -27,18 +27,38 @@ namespace CustomerServiceComplaintAutomationTool
         public MainWindow()
         {
             InitializeComponent();
-    
+
         }
 
+        private bool IsElementPresent(By by) //for selecting the new address radio button
+        {
+
+            try
+            {
+                driver.FindElement(by);
+                return true;
+
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
+
+        
 
         public void Run_Click(object sender, RoutedEventArgs e)
         {
+            
+
             IWebDriver driver = new ChromeDriver();
 
-            int complaintNumber = int.Parse(ComplaintNumberx.Text);
+            int complaintNumber = 31699;
+                //int.Parse(ComplaintNumberx.Text);
 
-            string magentouserName = Usernamex.Text;
-            string magentoPass = Passwordx.Text;
+            string magentouserName = "plane";
+            string magentoPass = "e1696pl";
+            string workEmail = "plane@bobsredmill.com";
 
    
             //opens complaint webpage
@@ -84,42 +104,31 @@ namespace CustomerServiceComplaintAutomationTool
             var magLogin = driver.FindElement(By.XPath("//*[@id='loginForm']/div/div[5]/input"));
             magLogin.Click();
 
+            //new complaint policy is to have everyone send replacements from their Sale and Marketing accounts on Magento
+            //adjustments will require magento to search for the individual's account, then add the customer's desired shipping address.
+
+            //navigating to one's own account
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
             var customersTab = driver.FindElement(By.XPath("//*[@id='nav']/li[4]"));
             customersTab.Click();
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             var manageCustomers = driver.FindElement(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a"));
             manageCustomers.Click();
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
-            var addNewCustomer = driver.FindElement(By.CssSelector("div.content-header:nth-child(2) > table:nth-child(1) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > button:nth-child(1)")); //SUCCESS!!!!
-            addNewCustomer.Click();
+            var csrepemailSearch = driver.FindElement(By.XPath("//*[@id='customerGrid_filter_email']"));
+            csrepemailSearch.SendKeys(workEmail);
+            csrepemailSearch.SendKeys(Keys.Return);
 
-            //new complaint policy is to have everyone send replacements from their Sale and Marketing accounts on Magento
-            //adjustments will require magento to search from the individual's account, then add the customer's desired shipping address.
+            System.Threading.Thread.Sleep(4000); //NEEDED, otherwise the next line won't click the right element
 
-            //start inputting customer's information
-
-            var assostoWebdd = driver.FindElement(By.XPath("//*[@id='_accountwebsite_id']"));
-            SelectElement select = new SelectElement(assostoWebdd);
-            select.SelectByText("Main Website");
-
-            var fnField = driver.FindElement(By.XPath("//*[@id='_accountfirstname']"));
-            fnField.SendKeys(firstName);
-
-            var lnField = driver.FindElement(By.XPath("//*[@id='_accountlastname']"));
-            lnField.SendKeys(lastName);
-
-            var emailField = driver.FindElement(By.XPath("//*[@id='_accountemail']"));
-            emailField.SendKeys(email);
-
-            string passW = "password"; //intentionally left blank so accounts are not actually created during testing. Normally we just set it as "password"
-            var passField = driver.FindElement(By.XPath("//*[@id='_accountpassword']"));
-            passField.SendKeys(passW);
-
-            //start inputting customer's address
+            var csrepemailEnter = driver.FindElement(By.ClassName("even"));
+            csrepemailEnter.Click();
 
             var movetoAddress = driver.FindElement(By.CssSelector("#customer_info_tabs_addresses"));
             movetoAddress.SendKeys(Keys.Return); //.SendKeys(Keys.Return) is necessary because the element is wrapped in a div or span, I guess.
@@ -127,11 +136,50 @@ namespace CustomerServiceComplaintAutomationTool
             var addnewAddress = driver.FindElement(By.CssSelector("#add_address_button"));
             addnewAddress.Click();
 
-            var selectbilAdd = driver.FindElement(By.CssSelector("#address_item_billing_item1"));
-            selectbilAdd.Click();
+            var addradioLocation = "#address_item_shipping_item4";
 
-            var selectshipAdd = driver.FindElement(By.CssSelector("#address_item_shipping_item1"));
-            selectshipAdd.Click();
+           
+
+
+
+            if (IsElementPresent(By.CssSelector(addradioLocation)))
+            {
+                var selectshipAdd = driver.FindElement(By.CssSelector(addradioLocation));
+                selectshipAdd.Click();
+            }
+            else
+            {
+                
+            }
+
+            // the item number/path name changes after it is saved.
+
+            //cssselector/XPath will change with every new shipping address...i.e. item, item2, item3, etc.
+
+            //selecting by Name or ClassName selects first entry only
+            //might have to find a way to cycle through all of the addresses to get the correct number for css or xpath...
+
+
+            System.Threading.Thread.Sleep(4000); // for testing
+
+            //start inputting customer's address
+
+            var fnField = driver.FindElement(By.XPath(""));
+            fnField.SendKeys(firstName);
+
+            var lnField = driver.FindElement(By.XPath(""));
+            lnField.SendKeys(lastName);
+
+            var emailField = driver.FindElement(By.XPath(""));
+            emailField.SendKeys(email);
+
+             
+
+            
+
+            
+
+            
 
             var addstreetAddress = driver.FindElement(By.XPath("//*[@id='_item1street0']"));
             addstreetAddress.SendKeys(streetAddress);
