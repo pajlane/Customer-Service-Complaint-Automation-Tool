@@ -23,15 +23,17 @@ namespace CustomerServiceComplaintAutomationTool
     /// </summary>
     public partial class MainWindow : Window
     {
+        IWebDriver driver = new ChromeDriver();
 
         public MainWindow()
         {
             InitializeComponent();
-
+            
         }
 
         private bool IsElementPresent(By by) //for selecting the new address radio button
         {
+            
 
             try
             {
@@ -49,9 +51,9 @@ namespace CustomerServiceComplaintAutomationTool
 
         public void Run_Click(object sender, RoutedEventArgs e)
         {
-            
 
-            IWebDriver driver = new ChromeDriver();
+
+            
 
             int complaintNumber = 31699;
                 //int.Parse(ComplaintNumberx.Text);
@@ -105,21 +107,21 @@ namespace CustomerServiceComplaintAutomationTool
             magLogin.Click();
 
             //new complaint policy is to have everyone send replacements from their Sale and Marketing accounts on Magento
-            //adjustments will require magento to search for the individual's account, then add the customer's desired shipping address.
+            //adjustments will require magento to search for the Rep's account, then add the customer's desired shipping address.
 
             //navigating to one's own account
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+           
 
             var customersTab = driver.FindElement(By.XPath("//*[@id='nav']/li[4]"));
             customersTab.Click();
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+           
 
             var manageCustomers = driver.FindElement(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a"));
             manageCustomers.Click();
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            
 
             var csrepemailSearch = driver.FindElement(By.XPath("//*[@id='customerGrid_filter_email']"));
             csrepemailSearch.SendKeys(workEmail);
@@ -136,21 +138,31 @@ namespace CustomerServiceComplaintAutomationTool
             var addnewAddress = driver.FindElement(By.CssSelector("#add_address_button"));
             addnewAddress.Click();
 
-            var addradioLocation = "#address_item_shipping_item4";
+
+
+
+            int count = 1;
+
+            bool elementPresent = (IsElementPresent(By.CssSelector("#address_item_shipping_item" + count)));
+
+
+            while (elementPresent == false)
+            {
+                count = count + 1;
+              
+            }
+
+            var selectshipAdd = driver.FindElement(By.CssSelector("#address_item_shipping_item" + count));
+            selectshipAdd.Click();
+
+
 
            
 
 
 
-            if (IsElementPresent(By.CssSelector(addradioLocation)))
-            {
-                var selectshipAdd = driver.FindElement(By.CssSelector(addradioLocation));
-                selectshipAdd.Click();
-            }
-            else
-            {
-                
-            }
+
+
 
             // the item number/path name changes after it is saved.
 
@@ -160,7 +172,7 @@ namespace CustomerServiceComplaintAutomationTool
             //might have to find a way to cycle through all of the addresses to get the correct number for css or xpath...
 
 
-            System.Threading.Thread.Sleep(4000); // for testing
+            System.Threading.Thread.Sleep(1000); // for testing
 
             //start inputting customer's address
 
