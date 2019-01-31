@@ -58,7 +58,7 @@ namespace CustomerServiceComplaintAutomationTool
             int complaintNumber = int.Parse(ComplaintNumberx.Text);
 
             string magentouserName = Usernamex.Text;
-            string magentoPass = Passwordx.Text;
+            string magentoPass = Passwordx.Password;
             string workEmail = Emailx.Text;
 
    
@@ -168,14 +168,18 @@ namespace CustomerServiceComplaintAutomationTool
             addState1.SendKeys(state);
             addState1.SendKeys(Keys.Return);
 
+            //Could add country here...but we only send replacements domestically.
+
             var addZip = driver.FindElement(By.CssSelector("#_item" + count + "postcode"));
             addZip.SendKeys(zipcode);
 
             var addPhone = driver.FindElement(By.CssSelector("#_item" + count + "telephone"));
             addPhone.SendKeys(phoneNumber);
 
+            System.Threading.Thread.Sleep(1000);
+
             var saveandcontinueEdit = driver.FindElement(By.CssSelector("div.content-header:nth-child(2) > p:nth-child(2) > button:nth-child(6)"));
-            saveandcontinueEdit.Click();
+            saveandcontinueEdit.Click();                               
 
             //that's it!
 
