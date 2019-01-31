@@ -31,7 +31,7 @@ namespace CustomerServiceComplaintAutomationTool
             
         }
 
-        private bool IsElementPresent(By by) //for selecting the new address radio button
+        private bool IsElementPresent(By by) //for selecting the new address radio button by checking to see if an element exists
         {
             
 
@@ -55,12 +55,11 @@ namespace CustomerServiceComplaintAutomationTool
 
             
 
-            int complaintNumber = 31699;
-                //int.Parse(ComplaintNumberx.Text);
+            int complaintNumber = int.Parse(ComplaintNumberx.Text);
 
-            string magentouserName = "plane";
-            string magentoPass = "e1696pl";
-            string workEmail = "plane@bobsredmill.com";
+            string magentouserName = Usernamex.Text;
+            string magentoPass = Passwordx.Text;
+            string workEmail = Emailx.Text;
 
    
             //opens complaint webpage
@@ -111,17 +110,13 @@ namespace CustomerServiceComplaintAutomationTool
 
             //navigating to one's own account
 
-           
+            System.Threading.Thread.Sleep(1000);
 
             var customersTab = driver.FindElement(By.XPath("//*[@id='nav']/li[4]"));
             customersTab.Click();
 
-           
-
             var manageCustomers = driver.FindElement(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a"));
             manageCustomers.Click();
-
-            
 
             var csrepemailSearch = driver.FindElement(By.XPath("//*[@id='customerGrid_filter_email']"));
             csrepemailSearch.SendKeys(workEmail);
@@ -138,79 +133,48 @@ namespace CustomerServiceComplaintAutomationTool
             var addnewAddress = driver.FindElement(By.CssSelector("#add_address_button"));
             addnewAddress.Click();
 
-
-
-
             int count = 1;
 
-            bool elementPresent = (IsElementPresent(By.CssSelector("#address_item_shipping_item" + count)));
-
-
-            while (elementPresent == false)
+            while (IsElementPresent(By.CssSelector("#address_item_shipping_item" + count)) == false) //loop throughs till it find the right CssSelector
             {
                 count = count + 1;
-              
             }
 
             var selectshipAdd = driver.FindElement(By.CssSelector("#address_item_shipping_item" + count));
             selectshipAdd.Click();
 
 
-
-           
-
-
-
-
-
-
-            // the item number/path name changes after it is saved.
-
-            //cssselector/XPath will change with every new shipping address...i.e. item, item2, item3, etc.
-
-            //selecting by Name or ClassName selects first entry only
-            //might have to find a way to cycle through all of the addresses to get the correct number for css or xpath...
-
-
             System.Threading.Thread.Sleep(1000); // for testing
 
             //start inputting customer's address
 
-            var fnField = driver.FindElement(By.XPath(""));
+            var fnField = driver.FindElement(By.CssSelector("#_item" + count + "firstname"));
+            fnField.Clear();
             fnField.SendKeys(firstName);
 
-            var lnField = driver.FindElement(By.XPath(""));
+            var lnField = driver.FindElement(By.CssSelector("#_item" + count + "lastname"));
+            lnField.Clear();
             lnField.SendKeys(lastName);
 
-            var emailField = driver.FindElement(By.XPath(""));
-            emailField.SendKeys(email);
 
-             
-
-            
-
-            
-
-            
-
-            var addstreetAddress = driver.FindElement(By.XPath("//*[@id='_item1street0']"));
+            var addstreetAddress = driver.FindElement(By.CssSelector("#_item" + count + "street0"));
             addstreetAddress.SendKeys(streetAddress);
 
-            var addCity = driver.FindElement(By.XPath("//*[@id='_item1city']"));
+            var addCity = driver.FindElement(By.CssSelector("#_item" + count + "city"));
             addCity.SendKeys(city);
 
-            var addState1 = driver.FindElement(By.XPath("//*[@id='_item1region_id']"));
+            var addState1 = driver.FindElement(By.CssSelector("#_item" + count + "region_id"));
             addState1.Click();
             addState1.SendKeys(state);
             addState1.SendKeys(Keys.Return);
 
-            var addZip = driver.FindElement(By.XPath("//*[@id='_item1postcode']"));
+            var addZip = driver.FindElement(By.CssSelector("#_item" + count + "postcode"));
             addZip.SendKeys(zipcode);
 
-            var addPhone = driver.FindElement(By.XPath("//*[@id='_item1telephone']"));
+            var addPhone = driver.FindElement(By.CssSelector("#_item" + count + "telephone"));
             addPhone.SendKeys(phoneNumber);
 
-            var saveandcontinueEdit = driver.FindElement(By.CssSelector("div.content-header:nth-child(2) > p:nth-child(2) > button:nth-child(4)"));
+            var saveandcontinueEdit = driver.FindElement(By.CssSelector("div.content-header:nth-child(2) > p:nth-child(2) > button:nth-child(6)"));
             saveandcontinueEdit.Click();
 
             //that's it!
