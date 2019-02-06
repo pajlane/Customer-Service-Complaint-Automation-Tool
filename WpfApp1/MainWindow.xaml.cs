@@ -52,19 +52,14 @@ namespace CustomerServiceComplaintAutomationTool
             {
                 return false;
             }
-
         }
 
-
-        private bool IsElementPresent(By by) //for selecting the new address radio button by checking to see if an element exists
+        private bool IsElementPresent(By by) //for selecting the new address radio button in magento by checking to see if an element exists
         {
-            
-
             try
             {
                 driver.FindElement(by);
                 return true;
-
             }
             catch (NoSuchElementException)
             {
@@ -75,47 +70,38 @@ namespace CustomerServiceComplaintAutomationTool
         public void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
             //find a way for it to be auto-checked on startup
-            //when checked it saves the csrep login info to a txt file
-
-            //WriteTextFile(string magentouserName, string magentoPass, string workEmail);
-        }
-
-        public void RadioButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            //if left unchecked it will delete textfile
-        }
-
-        public void WriteTextFile(string magentouserName, string magentoPass, string workEmail) //saves csrep info
-        {
-
+            //cannot uncheck it after it has been checked?? 
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\plane\Desktop\WriteLine.txt"))
             {
-                file.WriteLine(magentouserName);
-                file.WriteLine(magentoPass);
-                file.WriteLine(workEmail);
+                file.WriteLine(Usernamex.Text);
+                file.WriteLine(Passwordx.Password);
+                file.WriteLine(Emailx.Text);
             }
         }
 
-
-
+        public void RadioButton_Unchecked(object sender, RoutedEventArgs e) //if left unchecked it will delete txtfile containing login info
+        {                                                                   //currently doesn't work
+            if (System.IO.File.Exists(@"C:\Users\plane\Desktop\WriteLine.txt"))
+            {
+                try
+                {
+                    System.IO.File.Delete(@"C:\Users\plane\Desktop\WriteLine.txt");
+                }
+                catch (System.IO.IOException)
+                {
+                    return;
+                }
+            }
+        }
 
         public void Run_Click(object sender, RoutedEventArgs e)
         {
-
             int complaintNumber = int.Parse(ComplaintNumberx.Text);
 
             string magentouserName = Usernamex.Text;
             string magentoPass = Passwordx.Password;
             string workEmail = Emailx.Text;
-
-        
-            WriteTextFile(magentouserName, magentoPass, workEmail);
-            
-            
-
-   
-       
 
             driver.Url = "http://complaints/Home/ReadOnlyDetails/" + complaintNumber; //opens complaint webpage
 
@@ -141,9 +127,6 @@ namespace CustomerServiceComplaintAutomationTool
 
             var itemNumber = driver.FindElement(By.XPath("/html/body/div[2]/div/fieldset[2]/table/tbody/tr[2]/td[1]")).Text;
 
-
-
-
             //Beginning of Magento navigation
 
             driver.Url = "https://www.bobsredmill.com/index.php/admin/";
@@ -156,9 +139,6 @@ namespace CustomerServiceComplaintAutomationTool
 
             var magLogin = driver.FindElement(By.XPath("//*[@id='loginForm']/div/div[5]/input"));
             magLogin.Click();
-
-            //new complaint policy is to have everyone send replacements from their Sale and Marketing accounts on Magento
-            //adjustments will require magento to search for the Rep's account, then add the customer's desired shipping address.
 
             //navigating to one's own account
 
@@ -197,8 +177,7 @@ namespace CustomerServiceComplaintAutomationTool
             var selectshipAdd = driver.FindElement(By.CssSelector("#address_item_shipping_item" + count));
             selectshipAdd.Click();
 
-
-            System.Threading.Thread.Sleep(1000); // for testing
+            System.Threading.Thread.Sleep(1000);
 
             //start inputting customer's address
 
@@ -209,7 +188,6 @@ namespace CustomerServiceComplaintAutomationTool
             var lnField = driver.FindElement(By.CssSelector("#_item" + count + "lastname"));
             lnField.Clear();
             lnField.SendKeys(lastName);
-
 
             var addstreetAddress = driver.FindElement(By.CssSelector("#_item" + count + "street0"));
             addstreetAddress.SendKeys(streetAddress);
