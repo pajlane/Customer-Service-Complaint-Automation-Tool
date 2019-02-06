@@ -24,6 +24,7 @@ namespace CustomerServiceComplaintAutomationTool
     public partial class MainWindow : Window
     {
         IWebDriver driver = new ChromeDriver();
+        
 
         public MainWindow()
         {
@@ -47,13 +48,28 @@ namespace CustomerServiceComplaintAutomationTool
             }
         }
 
-        
+        public void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+           //WriteTextFile(string magentouserName, string magentoPass, string workEmail);
+        }
 
-        public void Run_Click(object sender, RoutedEventArgs e)
+        public void WriteTextFile(string magentouserName, string magentoPass, string workEmail) //saves csrep info
         {
 
 
-            
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\plane\Desktop\WriteLine.txt"))
+            {
+                file.WriteLine(magentouserName);
+                file.WriteLine(magentoPass);
+                file.WriteLine(workEmail);
+            }
+        }
+
+
+
+
+        public void Run_Click(object sender, RoutedEventArgs e)
+        {
 
             int complaintNumber = int.Parse(ComplaintNumberx.Text);
 
@@ -61,11 +77,12 @@ namespace CustomerServiceComplaintAutomationTool
             string magentoPass = Passwordx.Password;
             string workEmail = Emailx.Text;
 
+            WriteTextFile(magentouserName, magentoPass, workEmail);
+
    
-            //opens complaint webpage
+       
 
-
-            driver.Url = "http://complaints/Home/ReadOnlyDetails/" + complaintNumber;
+            driver.Url = "http://complaints/Home/ReadOnlyDetails/" + complaintNumber; //opens complaint webpage
 
             //gets the customers info for replacement orders
 
@@ -114,6 +131,8 @@ namespace CustomerServiceComplaintAutomationTool
 
             var customersTab = driver.FindElement(By.XPath("//*[@id='nav']/li[4]"));
             customersTab.Click();
+
+            System.Threading.Thread.Sleep(2000);
 
             var manageCustomers = driver.FindElement(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a"));
             manageCustomers.Click();
@@ -178,13 +197,19 @@ namespace CustomerServiceComplaintAutomationTool
 
             System.Threading.Thread.Sleep(1000);
 
-            var saveandcontinueEdit = driver.FindElement(By.CssSelector("div.content-header:nth-child(2) > p:nth-child(2) > button:nth-child(6)"));
-            saveandcontinueEdit.Click();                               
+            var saveandcontinueEdit = driver.FindElement(By.CssSelector("[title^= 'Save and Continue Edit']"));
+            var js = (IJavaScriptExecutor)driver;                 
+            IJavaScriptExecutor je = (IJavaScriptExecutor)driver; //scrolls up so the element is clickable
+            je.ExecuteScript("arguments[0].scrollIntoView(false);", saveandcontinueEdit);
+            saveandcontinueEdit.Click();
+
+           
+            //maybe add create order
 
             //that's it!
 
         }
 
-
+      
     }
 }

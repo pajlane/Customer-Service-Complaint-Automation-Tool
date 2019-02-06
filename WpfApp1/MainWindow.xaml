@@ -16,7 +16,9 @@
         <TextBox x:Name="Usernamex" HorizontalAlignment="Left" Height="19" Margin="32,293,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
         <PasswordBox x:Name="Passwordx" HorizontalAlignment="Left" Margin="32,327,0,0" VerticalAlignment="Top" Height="19" Width="102"/>
         <Button x:Name="Run" Content="Run" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="7.835,18.767" Margin="216,437,0,0" Click="Run_Click"/>
+        <RadioButton Content="Remember Me" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="32,351,0,0" Checked="RadioButton_Checked"/>
         
+
 
 
     </Grid>
