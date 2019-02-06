@@ -24,13 +24,37 @@ namespace CustomerServiceComplaintAutomationTool
     public partial class MainWindow : Window
     {
         IWebDriver driver = new ChromeDriver();
-        
 
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            if (IsLoginInfoPresent() == true)
+            {
+                string[] login = System.IO.File.ReadAllLines(@"C:\Users\plane\Desktop\WriteLine.txt");
+                Usernamex.Text = login[0];
+                Passwordx.Password = login[1];
+                Emailx.Text = login[2];
+            }
         }
+
+        private bool IsLoginInfoPresent()
+        {
+            try
+            {
+                string[] login = System.IO.File.ReadAllLines(@"C:\Users\plane\Desktop\WriteLine.txt");
+                string testArray = login[0];
+                return true;
+
+            }
+
+            catch (IndexOutOfRangeException)
+            {
+                return false;
+            }
+
+        }
+
 
         private bool IsElementPresent(By by) //for selecting the new address radio button by checking to see if an element exists
         {
@@ -50,7 +74,15 @@ namespace CustomerServiceComplaintAutomationTool
 
         public void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-           //WriteTextFile(string magentouserName, string magentoPass, string workEmail);
+            //find a way for it to be auto-checked on startup
+            //when checked it saves the csrep login info to a txt file
+
+            //WriteTextFile(string magentouserName, string magentoPass, string workEmail);
+        }
+
+        public void RadioButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            //if left unchecked it will delete textfile
         }
 
         public void WriteTextFile(string magentouserName, string magentoPass, string workEmail) //saves csrep info
@@ -77,7 +109,10 @@ namespace CustomerServiceComplaintAutomationTool
             string magentoPass = Passwordx.Password;
             string workEmail = Emailx.Text;
 
+        
             WriteTextFile(magentouserName, magentoPass, workEmail);
+            
+            
 
    
        
