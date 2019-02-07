@@ -52,6 +52,10 @@ namespace CustomerServiceComplaintAutomationTool
             {
                 return false;
             }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         private bool IsElementPresent(By by) //for selecting the new address radio button in magento by checking to see if an element exists
@@ -67,35 +71,34 @@ namespace CustomerServiceComplaintAutomationTool
             }
         }
 
-        public void RadioButton_Checked(object sender, RoutedEventArgs e)
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            //find a way for it to be auto-checked on startup
-            //cannot uncheck it after it has been checked?? 
-
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\plane\Desktop\WriteLine.txt"))
-            {
-                file.WriteLine(Usernamex.Text);
-                file.WriteLine(Passwordx.Password);
-                file.WriteLine(Emailx.Text);
-            }
+             //find a way for it to be auto-checked on startup
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\plane\Desktop\WriteLine.txt"))
+                {
+                    file.WriteLine(Usernamex.Text);
+                    file.WriteLine(Passwordx.Password);
+                    file.WriteLine(Emailx.Text);
+                }
         }
 
-        public void RadioButton_Unchecked(object sender, RoutedEventArgs e) //if left unchecked it will delete txtfile containing login info
-        {                                                                   //currently doesn't work
-            if (System.IO.File.Exists(@"C:\Users\plane\Desktop\WriteLine.txt"))
-            {
-                try
-                {
-                    System.IO.File.Delete(@"C:\Users\plane\Desktop\WriteLine.txt");
-                }
-                catch (System.IO.IOException)
-                {
-                    return;
-                }
-            }
-        }
 
-        public void Run_Click(object sender, RoutedEventArgs e)
+        public void CheckBox_Unchecked(object sender, RoutedEventArgs e) //if left unchecked it will delete txtfile containing login info
+            {                                                                      //currently doesn't work
+                if (System.IO.File.Exists(@"C:\Users\plane\Desktop\WriteLine.txt"))
+                {
+                    try
+                    {
+                        System.IO.File.Delete(@"C:\Users\plane\Desktop\WriteLine.txt");
+                    }
+                    catch (System.IO.IOException)
+                    {
+                        return;
+                    }
+            }
+    }
+    
+    public void Run_Click(object sender, RoutedEventArgs e)
         {
             int complaintNumber = int.Parse(ComplaintNumberx.Text);
 
@@ -131,7 +134,7 @@ namespace CustomerServiceComplaintAutomationTool
 
             driver.Url = "https://www.bobsredmill.com/index.php/admin/";
 
-            var userName = driver.FindElement(By.XPath("//*[@id='username']"));
+            var userName = driver.FindElement(By.XPath("//*[@id='username']")); //if using the app two times in a row this will throw an exception because you're already logged in!
             userName.SendKeys(magentouserName);
 
             var password = driver.FindElement(By.XPath("//*[@id='login']"));
@@ -147,7 +150,7 @@ namespace CustomerServiceComplaintAutomationTool
             var customersTab = driver.FindElement(By.XPath("//*[@id='nav']/li[4]"));
             customersTab.Click();
 
-            System.Threading.Thread.Sleep(2000);
+            System.Threading.Thread.Sleep(3000);
 
             var manageCustomers = driver.FindElement(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a"));
             manageCustomers.Click();
@@ -223,6 +226,6 @@ namespace CustomerServiceComplaintAutomationTool
 
         }
 
-      
+     
     }
 }
