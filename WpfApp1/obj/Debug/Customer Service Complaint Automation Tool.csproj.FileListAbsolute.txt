@@ -58,3 +58,7 @@ C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\o
 C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Debug\Customer Service Complaint Automation Tool.csproj.CopyComplete
 C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Debug\Customer Service Complaint Automation Tool.exe
 C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Debug\Customer Service Complaint Automation Tool.pdb
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\bin\Debug\Customer Service Complaint Automation Tool.exe.manifest
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\bin\Debug\Customer Service Complaint Automation Tool.application
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Debug\Customer Service Complaint Automation Tool.exe.manifest
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Debug\Customer Service Complaint Automation Tool.application
