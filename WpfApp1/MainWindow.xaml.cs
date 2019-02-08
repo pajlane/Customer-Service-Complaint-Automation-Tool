@@ -72,13 +72,6 @@ namespace CustomerServiceComplaintAutomationTool
             }
         }
 
-        private void Usernamex_TextChanged(object sender, TextChangedEventArgs e)
-        { }
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        { }
-        public void CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        { }
-
         public void Run_Click(object sender, RoutedEventArgs e)
         {
 
@@ -210,6 +203,10 @@ namespace CustomerServiceComplaintAutomationTool
             var addZip = driver.FindElement(By.CssSelector("#_item" + count + "postcode"));
             addZip.SendKeys(zipcode);
 
+            if (phoneNumber == "")
+            {
+                phoneNumber = "555-555-5555";
+            }
             var addPhone = driver.FindElement(By.CssSelector("#_item" + count + "telephone"));
             addPhone.SendKeys(phoneNumber);
 
