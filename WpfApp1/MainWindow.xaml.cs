@@ -24,16 +24,18 @@ namespace CustomerServiceComplaintAutomationTool
     public partial class MainWindow : Window
     {
         IWebDriver driver = new ChromeDriver();
+        string fileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WriteLine.txt");
         
+
 
         public MainWindow()
         {
             InitializeComponent();
-
+            
 
             if (IsLoginInfoPresent() == true)
             {
-                string[] login = System.IO.File.ReadAllLines(@"\%APPDATA%\WriteLine.txt");
+                string[] login = System.IO.File.ReadAllLines(fileName);
                 Usernamex.Text = login[0];
                 Passwordx.Password = login[1];
                 Emailx.Text = login[2];
@@ -44,7 +46,7 @@ namespace CustomerServiceComplaintAutomationTool
         {
             try
             {
-                string[] login = System.IO.File.ReadAllLines(@"\%APPDATA%\WriteLine.txt");
+                string[] login = System.IO.File.ReadAllLines(fileName);
                 string testArray = login[0];
                 return true;
 
@@ -74,7 +76,7 @@ namespace CustomerServiceComplaintAutomationTool
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"\%APPDATA\WriteLine.txt"))
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter(fileName))
                 {
                     file.WriteLine(Usernamex.Text);
                     file.WriteLine(Passwordx.Password);
@@ -83,12 +85,12 @@ namespace CustomerServiceComplaintAutomationTool
         }
 
         public void CheckBox_Unchecked(object sender, RoutedEventArgs e) //if left unchecked it will delete txtfile containing login info
-            {                                                                      //currently doesn't work
-                if (System.IO.File.Exists(@"\%APPDATA%\WriteLine.txt"))
+            {                                                                      
+                if (System.IO.File.Exists(fileName))
                 {
                     try
                     {
-                        System.IO.File.Delete(@"\%APPDATA\WriteLine.txt");
+                        System.IO.File.Delete(fileName);
                     }
                     catch (System.IO.IOException)
                     {
@@ -144,7 +146,7 @@ namespace CustomerServiceComplaintAutomationTool
 
                 //navigating to one's own account
 
-                System.Threading.Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(2000);
 
                 var customersTab = driver.FindElement(By.XPath("//*[@id='nav']/li[4]"));
                 customersTab.Click();
