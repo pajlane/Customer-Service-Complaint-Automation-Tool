@@ -23,7 +23,8 @@ namespace CustomerServiceComplaintAutomationTool
     /// </summary>
     public partial class MainWindow : Window
     {
-        IWebDriver driver = new ChromeDriver();
+        
+        IWebDriver driver = new ChromeDriver(@"\\brmpro\MACAPPS\ClickOnce\CustomerServiceAutomationTool");
         string fileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WriteLine.txt");
 
         public MainWindow()

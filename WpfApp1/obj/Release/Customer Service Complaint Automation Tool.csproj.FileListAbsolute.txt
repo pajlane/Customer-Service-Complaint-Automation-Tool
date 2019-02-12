@@ -1,0 +1,24 @@
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\bin\Release\Customer Service Complaint Automation Tool.exe.config
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\bin\Release\Customer Service Complaint Automation Tool.exe.manifest
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\bin\Release\Customer Service Complaint Automation Tool.application
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\bin\Release\Customer Service Complaint Automation Tool.exe
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\bin\Release\Customer Service Complaint Automation Tool.pdb
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\bin\Release\WebDriver.dll
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\bin\Release\WebDriver.Support.dll
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\bin\Release\WebDriver.xml
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\bin\Release\WebDriver.Support.xml
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\Customer Service Complaint Automation Tool.csprojAssemblyReference.cache
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\MainWindow.g.cs
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\App.g.cs
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\Customer Service Complaint Automation Tool_MarkupCompile.cache
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\Customer Service Complaint Automation Tool_MarkupCompile.lref
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\MainWindow.baml
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\Customer Service Complaint Automation Tool.g.resources
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\CustomerServiceComplaintAutomationTool.Properties.Resources.resources
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\Customer Service Complaint Automation Tool.csproj.GenerateResource.cache
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\Customer Service Complaint Automation Tool.csproj.CoreCompileInputs.cache
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\Customer Service Complaint Automation Tool.exe.manifest
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\Customer Service Complaint Automation Tool.application
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\Customer Service Complaint Automation Tool.csproj.CopyComplete
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\Customer Service Complaint Automation Tool.exe
+C:\Users\plane\source\repos\Customer Service Complaint Automation Tool\WpfApp1\obj\Release\Customer Service Complaint Automation Tool.pdb
