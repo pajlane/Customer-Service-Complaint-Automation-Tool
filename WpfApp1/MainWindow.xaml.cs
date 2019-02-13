@@ -27,6 +27,7 @@ namespace CustomerServiceComplaintAutomationTool
         IWebDriver driver = new ChromeDriver(@"\\brmpro\MACAPPS\ClickOnce\CustomerServiceAutomationTool");
         string fileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WriteLine.txt");
 
+
         public MainWindow()
         {
             InitializeComponent();
@@ -71,7 +72,13 @@ namespace CustomerServiceComplaintAutomationTool
             {
                 return false;
             }
+            catch (ElementNotVisibleException)
+            {
+                return false;
+            }
+            
         }
+
 
         public void Run_Click(object sender, RoutedEventArgs e)
         {
@@ -139,15 +146,25 @@ namespace CustomerServiceComplaintAutomationTool
             var magLogin = driver.FindElement(By.XPath("//*[@id='loginForm']/div/div[5]/input"));
             magLogin.Click();
 
+
             //navigating to one's own account
 
-            System.Threading.Thread.Sleep(2000);
+            while (IsElementPresent(By.XPath("//*[@id='nav']/li[4]")) == false)
+            {
+                if (IsElementPresent(By.XPath("//*[@id='nav']/li[4]")) == true)
+                    break;
+            }
+                var customersTab = driver.FindElement(By.XPath("//*[@id='nav']/li[4]"));
+                customersTab.Click();
 
-            var customersTab = driver.FindElement(By.XPath("//*[@id='nav']/li[4]"));
-            customersTab.Click();
 
-            System.Threading.Thread.Sleep(3000);
+            //System.Threading.Thread.Sleep(1000); //use iselementpresent here
 
+            while (IsElementPresent(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a")) == false)
+            {
+                if (IsElementPresent(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a")) == true)
+                    break;
+            }
             var manageCustomers = driver.FindElement(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a"));
             manageCustomers.Click();
 
@@ -155,10 +172,28 @@ namespace CustomerServiceComplaintAutomationTool
             csrepemailSearch.SendKeys(workEmail);
             csrepemailSearch.SendKeys(Keys.Return);
 
-            System.Threading.Thread.Sleep(4000); //NEEDED, otherwise the next line won't click the right element
-
+            var loadingMask = driver.FindElement(By.Id("loading-mask")); //element not visible after like ten seconds. I need something that asks if its visible, and to only continue after it is not visible, that's what loadingmask.click() is for
+            while (IsElementPresent(By.Id("loading-mask")) == true) 
+            {
+                try
+                {
+                    loadingMask.Click();
+                }
+                catch (ElementNotVisibleException)
+                {
+                    break;
+                }
+                
+            }
             var csrepemailEnter = driver.FindElement(By.ClassName("even"));
             csrepemailEnter.Click();
+
+
+            while (IsElementPresent(By.CssSelector("#customer_info_tabs_addresses")) == false)
+            {
+                if (IsElementPresent(By.CssSelector("#customer_info_tabs_addresses")) == true)
+                    break;
+            }
 
             var movetoAddress = driver.FindElement(By.CssSelector("#customer_info_tabs_addresses"));
             movetoAddress.SendKeys(Keys.Return); //.SendKeys(Keys.Return) is necessary because the element is wrapped in a div or span, I guess.
