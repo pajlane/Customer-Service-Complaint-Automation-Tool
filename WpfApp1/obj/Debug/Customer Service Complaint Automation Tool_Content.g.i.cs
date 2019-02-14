@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("chromedriver.exe")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("g_frog.ico")]
 
 

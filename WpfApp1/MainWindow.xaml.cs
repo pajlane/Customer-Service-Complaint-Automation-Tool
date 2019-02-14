@@ -77,10 +77,12 @@ namespace CustomerServiceComplaintAutomationTool
 
         public void Run_Click(object sender, RoutedEventArgs e) //Run button!
         {
-            IWebDriver driver = new ChromeDriver(@"\\brmpro\MACAPPS\ClickOnce\CustomerServiceAutomationTool");
 
-            ChromeDriverService service = ChromeDriverService.CreateDefaultService();//doesn't work atm
-            service.HideCommandPromptWindow = true;
+            var driverService = ChromeDriverService.CreateDefaultService(@"\\brmpro\MACAPPS\ClickOnce\CustomerServiceAutomationTool");
+            driverService.HideCommandPromptWindow = true;
+            var driver = new ChromeDriver(driverService, new ChromeOptions());
+
+            Close();
 
             if (Checkbox1.IsChecked.Value)
             {
@@ -182,6 +184,10 @@ namespace CustomerServiceComplaintAutomationTool
                 {
                     break;
                 }
+                catch (WebDriverException)
+                {
+                    break;
+                }
                 
             }
             var csrepemailEnter = driver.FindElement(By.ClassName("even"));
@@ -253,7 +259,7 @@ namespace CustomerServiceComplaintAutomationTool
             je.ExecuteScript("arguments[0].scrollIntoView(false);", saveandcontinueEdit);
             saveandcontinueEdit.Click();
 
-
+            
             //maybe add create order
 
             //that's it!
