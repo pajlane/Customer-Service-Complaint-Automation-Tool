@@ -23,15 +23,11 @@ namespace CustomerServiceComplaintAutomationTool
     /// </summary>
     public partial class MainWindow : Window
     {
-        
-        IWebDriver driver = new ChromeDriver(@"\\brmpro\MACAPPS\ClickOnce\CustomerServiceAutomationTool");
         string fileName = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WriteLine.txt");
-
 
         public MainWindow()
         {
             InitializeComponent();
-
 
             if (IsLoginInfoPresent() == true)
             {
@@ -61,7 +57,7 @@ namespace CustomerServiceComplaintAutomationTool
             }
         }
 
-        private bool IsElementPresent(By by) //for selecting the new address radio button in magento by checking to see if an element exists
+        private bool IsElementPresent(By by, IWebDriver driver) //for selecting the new address radio button in magento by checking to see if an element exists
         {
             try
             {
@@ -79,9 +75,12 @@ namespace CustomerServiceComplaintAutomationTool
             
         }
 
-
-        public void Run_Click(object sender, RoutedEventArgs e)
+        public void Run_Click(object sender, RoutedEventArgs e) //Run button!
         {
+            IWebDriver driver = new ChromeDriver(@"\\brmpro\MACAPPS\ClickOnce\CustomerServiceAutomationTool");
+
+            ChromeDriverService service = ChromeDriverService.CreateDefaultService();//doesn't work atm
+            service.HideCommandPromptWindow = true;
 
             if (Checkbox1.IsChecked.Value)
             {
@@ -149,9 +148,9 @@ namespace CustomerServiceComplaintAutomationTool
 
             //navigating to one's own account
 
-            while (IsElementPresent(By.XPath("//*[@id='nav']/li[4]")) == false)
+            while (IsElementPresent(By.XPath("//*[@id='nav']/li[4]"), driver) == false)
             {
-                if (IsElementPresent(By.XPath("//*[@id='nav']/li[4]")) == true)
+                if (IsElementPresent(By.XPath("//*[@id='nav']/li[4]"), driver) == true)
                     break;
             }
                 var customersTab = driver.FindElement(By.XPath("//*[@id='nav']/li[4]"));
@@ -160,9 +159,9 @@ namespace CustomerServiceComplaintAutomationTool
 
             //System.Threading.Thread.Sleep(1000); //use iselementpresent here
 
-            while (IsElementPresent(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a")) == false)
+            while (IsElementPresent(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a"), driver) == false)
             {
-                if (IsElementPresent(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a")) == true)
+                if (IsElementPresent(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a"), driver) == true)
                     break;
             }
             var manageCustomers = driver.FindElement(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a"));
@@ -173,7 +172,7 @@ namespace CustomerServiceComplaintAutomationTool
             csrepemailSearch.SendKeys(Keys.Return);
 
             var loadingMask = driver.FindElement(By.Id("loading-mask")); //element not visible after like ten seconds. I need something that asks if its visible, and to only continue after it is not visible, that's what loadingmask.click() is for
-            while (IsElementPresent(By.Id("loading-mask")) == true) 
+            while (IsElementPresent(By.Id("loading-mask"), driver) == true) 
             {
                 try
                 {
@@ -189,9 +188,9 @@ namespace CustomerServiceComplaintAutomationTool
             csrepemailEnter.Click();
 
 
-            while (IsElementPresent(By.CssSelector("#customer_info_tabs_addresses")) == false)
+            while (IsElementPresent(By.CssSelector("#customer_info_tabs_addresses"), driver) == false)
             {
-                if (IsElementPresent(By.CssSelector("#customer_info_tabs_addresses")) == true)
+                if (IsElementPresent(By.CssSelector("#customer_info_tabs_addresses"), driver) == true)
                     break;
             }
 
@@ -203,7 +202,7 @@ namespace CustomerServiceComplaintAutomationTool
 
             int count = 1;
 
-            while (IsElementPresent(By.CssSelector("#address_item_shipping_item" + count)) == false) //loop throughs till it find the right CssSelector
+            while (IsElementPresent(By.CssSelector("#address_item_shipping_item" + count), driver) == false) //loop throughs till it find the right CssSelector
             {
                 count = count + 1;
             }
