@@ -51,7 +51,7 @@ namespace CustomerServiceComplaintAutomationTool
             {
                 return false;
             }
-            catch (Exception) //made for if the "WriteLine.txt" file doesn't exist
+            catch (Exception) //made for if the "WriteLine.txt" file doesn't exist, which it won't if the checkbox isn't checked.
             {
                 return false;
             }
@@ -139,7 +139,7 @@ namespace CustomerServiceComplaintAutomationTool
             driver.Url = "https://www.bobsredmill.com/index.php/admin/";
 
             var userName = driver.FindElement(By.XPath("//*[@id='username']")); //if using the app two times in a row this will throw an exception because you're already logged in!
-            userName.SendKeys(magentouserName);
+            userName.SendKeys(magentouserName);                                 //that's only true if chromedrive is instantiated outside of run_click
 
             var password = driver.FindElement(By.XPath("//*[@id='login']"));
             password.SendKeys(magentoPass);
@@ -157,9 +157,6 @@ namespace CustomerServiceComplaintAutomationTool
             }
                 var customersTab = driver.FindElement(By.XPath("//*[@id='nav']/li[4]"));
                 customersTab.Click();
-
-
-            //System.Threading.Thread.Sleep(1000); //use iselementpresent here
 
             while (IsElementPresent(By.XPath("//*[@id='nav']/li[4]/ul/li[1]/a"), driver) == false)
             {
@@ -192,7 +189,6 @@ namespace CustomerServiceComplaintAutomationTool
             }
             var csrepemailEnter = driver.FindElement(By.ClassName("even"));
             csrepemailEnter.Click();
-
 
             while (IsElementPresent(By.CssSelector("#customer_info_tabs_addresses"), driver) == false)
             {
@@ -239,8 +235,6 @@ namespace CustomerServiceComplaintAutomationTool
             addState1.SendKeys(state);
             addState1.SendKeys(Keys.Return);
 
-            //Could add country here...but we only send replacements domestically.
-
             var addZip = driver.FindElement(By.CssSelector("#_item" + count + "postcode"));
             addZip.SendKeys(zipcode);
 
@@ -259,7 +253,6 @@ namespace CustomerServiceComplaintAutomationTool
             je.ExecuteScript("arguments[0].scrollIntoView(false);", saveandcontinueEdit);
             saveandcontinueEdit.Click();
 
-            
             //maybe add create order
 
             //that's it!
