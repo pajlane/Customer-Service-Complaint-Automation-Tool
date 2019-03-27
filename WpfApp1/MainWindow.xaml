@@ -6,21 +6,31 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="Complaint Master 9000" Height="563.551" Width="526.636">
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="89*"/>
+        <TabControl>
+            <TabItem Header="Replacements" />
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="89*"/>
+                </Grid.ColumnDefinitions>
+            </Grid>
 
-        </Grid.ColumnDefinitions>
-        <TextBlock HorizontalAlignment="Left" Height="38" Margin="83,84,0,0" TextWrapping="Wrap" Text="Complaint #" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.985,0.436" Grid.ColumnSpan="2"/>
+            
+            <TextBlock HorizontalAlignment="Left" Height="38" Margin="83,84,0,0" TextWrapping="Wrap" Text="Complaint #" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.985,0.436" Grid.ColumnSpan="2"/>
 
-        <TextBox x:Name="ComplaintNumberx" HorizontalAlignment="Left" Height="20" Margin="167,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
-        <TextBox x:Name="Emailx" HorizontalAlignment="Left" Height="23" Margin="167,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
-        <TextBlock HorizontalAlignment="Left" Height="23" Margin="83,122,0,0" TextWrapping="Wrap" Text="Your Email:" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2"/>
-        <TextBlock HorizontalAlignment="Left" Height="45" Margin="32,267,0,0" TextWrapping="Wrap" Text="Magento Login" VerticalAlignment="Top" Width="170" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="Usernamex" HorizontalAlignment="Left" Height="19" Margin="32,293,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102" Grid.ColumnSpan="2"/>
-        <PasswordBox x:Name="Passwordx" HorizontalAlignment="Left" Margin="32,327,0,0" VerticalAlignment="Top" Height="19" Width="102" Grid.ColumnSpan="2"/>
-        <Button x:Name="Run" Content="Run" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" RenderTransformOrigin="7.835,18.767" Margin="204,392,0,0" IsDefault="True" Click="Run_Click"/>
-        <CheckBox x:Name="Checkbox1"  Content="Remember Me" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="32,360,0,0" IsChecked="True"/>
+            <TextBox x:Name="ComplaintNumberx" HorizontalAlignment="Left" Height="20" Margin="167,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
+           
+            <TextBox x:Name="Emailx" HorizontalAlignment="Left" Height="23" Margin="167,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
+            <TextBlock HorizontalAlignment="Left" Height="23" Margin="83,122,0,0" TextWrapping="Wrap" Text="Your Email:" VerticalAlignment="Top" Width="84" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Left" Height="45" Margin="32,267,0,0" TextWrapping="Wrap" Text="Magento Login" VerticalAlignment="Top" Width="170" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="Usernamex" HorizontalAlignment="Left" Height="19" Margin="32,293,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102" Grid.ColumnSpan="2"/>
+            <PasswordBox x:Name="Passwordx" HorizontalAlignment="Left" Margin="32,327,0,0" VerticalAlignment="Top" Height="19" Width="102" Grid.ColumnSpan="2"/>
+            <Button x:Name="Run" Content="Run" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" RenderTransformOrigin="7.835,18.767" Margin="204,392,0,0" IsDefault="True" Click="Run_Click"/>
+            <CheckBox x:Name="Checkbox1"  Content="Remember Me" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="32,360,0,0" IsChecked="True"/>
 
+
+        </TabControl>
     </Grid>
 </Window>
