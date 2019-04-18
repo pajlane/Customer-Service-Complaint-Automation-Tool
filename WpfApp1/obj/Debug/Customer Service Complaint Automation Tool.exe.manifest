@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Customer Service Complaint Automation Tool.exe" size="158664">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Customer Service Complaint Automation Tool.exe" size="159176">
       <assemblyIdentity name="Customer Service Complaint Automation Tool" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/HDa2Z2t6KqfNC49TLvdtGe0BTD/EpM+sJ2UKDH9i3g=</dsig:DigestValue>
+        <dsig:DigestValue>lN9A/BAq21lvznWz37hWBJ8i8nefyJRml/4WprX1et8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

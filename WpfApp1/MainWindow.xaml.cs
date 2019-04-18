@@ -377,14 +377,35 @@ namespace CustomerServiceComplaintAutomationTool
                 var orderField1 = driver.FindElement(By.XPath("//*[@id='sales_order_grid_archive_filter_real_order_id']"));
                 string orderNumberInput1 = Convert.ToString(orderNumber);
                 orderField1.SendKeys(orderNumberInput1);
-                orderField1.SendKeys(Keys.Return);               
+                orderField1.SendKeys(Keys.Return);
+
+                while (IsElementPresent(By.Id("loading-mask"), driver) == true)
+                {
+                    try
+                    {
+                        var loadingMask1 = driver.FindElement(By.Id("loading-mask"));
+                        loadingMask1.Click();
+                    }
+                    catch (ElementNotVisibleException)
+                    {
+                        break;
+                    }
+                    catch (WebDriverException)
+                    {
+                        break;
+                    }
+                }
+
+                var archiveOrderSelect = driver.FindElement(By.XPath("//*[@id='sales_order_grid_archive_table']/tbody/tr"));
+                archiveOrderSelect.Click();
             }
 
-            var loadingMask1 = driver.FindElement(By.Id("loading-mask"));
+            
             while (IsElementPresent(By.Id("loading-mask"), driver) == true)
             {
                 try
                 {
+                    var loadingMask1 = driver.FindElement(By.Id("loading-mask"));
                     loadingMask1.Click();
                 }
                 catch (ElementNotVisibleException)
@@ -399,11 +420,19 @@ namespace CustomerServiceComplaintAutomationTool
 
             System.Threading.Thread.Sleep(1000);
 
-            var orderSelect1 = driver.FindElement(By.XPath("//*[@id='sales_order_grid_archive_table']/tbody/tr/td[2]")); //need to make an adjustment here for when items aren't in archive
-            orderSelect1.Click();
 
-            var editButton = driver.FindElement(By.XPath("/html/body/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/div[1]/div[6]/div/div/div/a")); //so I can more easily extract name/address etc.
+            
+            //the below line of code is the edit button for an archive order
+            if (IsElementPresent(By.XPath("/html/body/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/div[1]/div[6]/div/div/div/a"), driver) == true)
+            {
+            var editButton = driver.FindElement(By.XPath("/html/body/div[2]/div[2]/div/div/div[2]/div/div[3]/div[1]/div[1]/div[6]/div/div/div/a")); //so I can more easily extract name/address etc. DOESN'T WORK FOR ARCHIVED ORDERS
             editButton.Click();
+            }
+            else
+            {
+                var editButtonArchived = driver.FindElement(By.XPath("//*[@id='sales_order_view_tabs_order_info_content']/div[1]/div[6]/div/div/div/a"));
+                editButtonArchived.Click();
+            }
 
             var firstName = driver.FindElement(By.Id("firstname"));
             string firstNameA = firstName.GetAttribute("value");

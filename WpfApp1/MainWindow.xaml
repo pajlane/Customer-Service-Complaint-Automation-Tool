@@ -8,7 +8,7 @@
         Title="Complaint Master 9000" Height="563.551" Width="526.636">
 
     <TabControl>
-    <TabItem Header = "Replacements">
+    <TabItem Header = "Complaint Replacements">
         <Grid>
 
 
@@ -26,7 +26,7 @@
         </Grid>
     </TabItem>
     
-    <TabItem Header= "Replacements w/o acct. ">
+    <TabItem Header= "Guest Replacements">
         <Grid>
                 <TextBlock HorizontalAlignment="Left" Height="38" Margin="83,84,0,0" TextWrapping="Wrap" Text="Order #" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.985,0.436" Grid.ColumnSpan="2"/>
                 <TextBox x:Name="OrderNumberx" HorizontalAlignment="Left" Height="20" Margin="167,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
