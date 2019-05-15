@@ -85,7 +85,7 @@ namespace CustomerServiceComplaintAutomationTool
 
             var driverService = ChromeDriverService.CreateDefaultService(@"\\brmpro\MACAPPS\ClickOnce\CustomerServiceAutomationTool");
             driverService.HideCommandPromptWindow = true;
-            var driver = new ChromeDriver(driverService, new ChromeOptions());
+                var driver = new ChromeDriver(driverService, new ChromeOptions());
 
             Close();
 
@@ -213,6 +213,32 @@ namespace CustomerServiceComplaintAutomationTool
             {
                 count = count + 1;
             }
+
+            //if count = 58 then delete as that is the limit for magento
+
+            IJavaScriptExecutor jsD = (IJavaScriptExecutor)driver; //this clicks "OK" on chrome alert when deleted an address using the if statement below.
+            jsD.ExecuteScript("window.confirm = function(msg) { return true; }");
+
+            int deleteCount = count - 3;
+            if (deleteCount >= 20)
+            { 
+                while (deleteCount >= 2)
+                {
+
+                var addressDelete = driver.FindElement(By.CssSelector("#delete_button" + deleteCount));
+
+                var js2 = (IJavaScriptExecutor)driver;
+                IJavaScriptExecutor je2 = (IJavaScriptExecutor)driver; //scrolls so the element is clickable
+                je2.ExecuteScript("arguments[0].scrollIntoView(false);", addressDelete);
+
+                addressDelete.Click(); //says it's not interactable, but it works if I type in the location of addressDelete exactly instead of using deleteCount
+                //Other element would receive the click: <div class="content-header">...</div>
+
+                deleteCount = deleteCount - 1;
+                
+                }
+            }
+
 
             var selectshipAdd = driver.FindElement(By.CssSelector("#address_item_shipping_item" + count));
             selectshipAdd.Click();
