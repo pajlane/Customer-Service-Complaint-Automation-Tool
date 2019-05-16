@@ -284,8 +284,13 @@ namespace CustomerServiceComplaintAutomationTool
             je.ExecuteScript("arguments[0].scrollIntoView(false);", saveandcontinueEdit);
             saveandcontinueEdit.Click();
 
-            //maybe add create order
 
+            //chromedriver stays open after program runs 
+            System.Threading.Thread.Sleep(600000); //set to ten minutes 
+            driver.Quit(); //Doesn't work because user needs to interact with the browser window after the data entry is done 
+                           //Trying timer method as users state they don't use the window after completing replacement
+
+             //maybe add create order
             //that's it!
 
         }
@@ -308,7 +313,7 @@ namespace CustomerServiceComplaintAutomationTool
 
 
 
-     public void Run1_Click(object sender, RoutedEventArgs e) //for replacements w/out acct tab
+        public void Run1_Click(object sender, RoutedEventArgs e) //for replacements w/out acct tab
         {
             var driverService = ChromeDriverService.CreateDefaultService(@"\\brmpro\MACAPPS\ClickOnce\CustomerServiceAutomationTool");
             driverService.HideCommandPromptWindow = true;
@@ -585,6 +590,11 @@ namespace CustomerServiceComplaintAutomationTool
            IJavaScriptExecutor je = (IJavaScriptExecutor)driver; //scrolls up so the element is clickable
            je.ExecuteScript("arguments[0].scrollIntoView(false);", saveandcontinueEdit);
            saveandcontinueEdit.Click();
+
+            //chromedriver stays open after program runs 
+            System.Threading.Thread.Sleep(600000); //set to ten minutes 
+            driver.Quit(); //Doesn't work because user needs to interact with the browser window after the data entry is done 
+                           //Trying timer method as users state they don't use the window after completing replacement
 
         }
     }
