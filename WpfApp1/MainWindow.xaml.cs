@@ -474,6 +474,10 @@ namespace CustomerServiceComplaintAutomationTool
             var streetAddress = driver.FindElement(By.XPath("//*[@id='street0']"));
             string streetAddressA = streetAddress.GetAttribute("value");
 
+            //Need second address line for guest replacements!!
+            var streetAddress2 = driver.FindElement(By.XPath("//*[@id='street1']"));
+            string streetAddressB = streetAddress2.GetAttribute("value");
+
             var city = driver.FindElement(By.XPath("//*[@id='city']")); 
             string cityA = city.GetAttribute("value");
             
@@ -568,6 +572,9 @@ namespace CustomerServiceComplaintAutomationTool
 
             var addstreetAddress = driver.FindElement(By.CssSelector("#_item" + count + "street0"));
             addstreetAddress.SendKeys(streetAddressA);
+
+            var addstreetAddress2 = driver.FindElement(By.CssSelector("#_item" + count + "street1"));
+            addstreetAddress2.SendKeys(streetAddressB);
 
             var addCity = driver.FindElement(By.CssSelector("#_item" + count + "city"));
             addCity.SendKeys(cityA);
