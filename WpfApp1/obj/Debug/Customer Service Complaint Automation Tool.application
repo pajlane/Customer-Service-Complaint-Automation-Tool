@@ -14,14 +14,14 @@
     <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="Customer Service Complaint Automation Tool.exe.manifest" size="5435">
+    <dependentAssembly dependencyType="install" codebase="Customer Service Complaint Automation Tool.exe.manifest" size="5433">
       <assemblyIdentity name="Customer Service Complaint Automation Tool.exe" version="1.0.0.28" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Lr2iCOr5UMTqpoHt5Fvbvn3RLRvFNfziZes7vcpm2M4=</dsig:DigestValue>
+        <dsig:DigestValue>gU+qPNexKbIu9iGKUUtq0nADy1nNY9mC1N69K5Pn3fA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

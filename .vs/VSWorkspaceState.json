@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WpfApp1"
   ],
-  "SelectedNode": "\\Customer Service Complaint Automation Tool.sln",
+  "SelectedNode": "\\WpfApp1\\MainWindow.xaml.cs",
   "PreviewInSolutionExplorer": false
 }
