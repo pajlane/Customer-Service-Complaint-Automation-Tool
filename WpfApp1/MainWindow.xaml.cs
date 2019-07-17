@@ -474,7 +474,6 @@ namespace CustomerServiceComplaintAutomationTool
             var streetAddress = driver.FindElement(By.XPath("//*[@id='street0']"));
             string streetAddressA = streetAddress.GetAttribute("value");
 
-            //Need second address line for guest replacements!!
             var streetAddress2 = driver.FindElement(By.XPath("//*[@id='street1']"));
             string streetAddressB = streetAddress2.GetAttribute("value");
 
